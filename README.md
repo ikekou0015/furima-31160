@@ -1,24 +1,64 @@
-# README
+# テーブル設計
+## users テーブル
+| Column     | Type      | Options     |
+| --------   | ------    | ----------- |
+| email      | string    | null: false |
+| password   | string    | null: false |
+| name       | string    | null: false |
+| birthday   | integer   | null: false |
+| full_name  | string    | null: false |
+| furigana   | string    | null: false |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_one  :addresses
+- has_one  :purchase
 
-* Ruby version
+## addresses テーブル
+| Column         | Type      | Options     |
+| --------       | ------    | ----------- |
+| postal_code    | integer   | null: false |
+| prefectures    | string    | null: false |
+| municipalities | string    | null: false |
+| address        | string    | null: false |
+| building       | string    | null: false |
+| phone_number   | integer   | null: false |
+| user_id    | references| null: false, foreign_key: true|
+ 
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* System dependencies
+## items テーブル
+| Column    | Type       | Options     |
+| ------    | ------     | ----------- |
+| item_name | string     | null: false |
+| category  | string     | null: false |
+| price     | integer    | null: false |
+| user_id   | references | null: false |
+| seller    | string     | null: false |
+| condition | string     | null: false |
+| cost      | string     | null: false |
+| soures    | string     | null: false |
+| date      | integer    | null: false |
+| user_id   | references | null: false, foreign_key: true|
 
-* Configuration
+### Association
+- belongs_to :user
+- has_one :order
+- has_one :address
 
-* Database creation
+## orders テーブル
+| Column     | Type          | Options                        |
+| ------     | ----------    | ------------------------------ |
+| user       | string        | null: false                    |
+| order      | string        | null: false                    |
+| item       | string        | null: false                    |
+| user_id    | references    | null: false   foreign_key: true|
+ 
+### Association
+ 
+- belongs_to :user
+- belongs_to :item
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
