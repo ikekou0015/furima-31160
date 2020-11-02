@@ -13,7 +13,7 @@
 
 ### Association
 - has_many :items
-- has_one  :purchase
+- has_one  :addresses
 
 ## addresses テーブル
 | Column         | Type      | Options     |
