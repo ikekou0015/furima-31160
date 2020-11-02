@@ -13,36 +13,34 @@
 
 ### Association
 - has_many :items
-- has_one  :addresses
+- has_one :order
 
 ## addresses テーブル
-| Column         | Type      | Options     |
-| --------       | ------    | ----------- |
-| postal_code    | string    | null: false |
-| prefectures_id | integer    | null: false |
-| municipalities | string    | null: false |
-| address        | string    | null: false |
-| building       | string    | null: false |
-| phone_number   | string   | null: false |
-| user_id        | references| null: false, foreign_key: true|
+| Column         | Type      | Options                        |
+| --------       | ------    | -----------                    |
+| postal_code    | string    | null: false                    |
+| prefectures_id | integer   | null: false                    |
+| municipalities | string    | null: false                    |
+| address        | string    | null: false                    |
+| building       | string    | null: false                    |
+| phone_number   | string    | null: false                    |
+| order_id        | references| null: false, foreign_key: true|
  
 ### Association
 - belongs_to :order
 
 
 ## items テーブル
-| Column    | Type       | Options     |
-| ------    | ------     | ----------- |
-| item_name | string     | null: false |
-| category  | string     | null: false |
-| price     | integer    | null: false |
-| user_id   | references | null: false |
-| seller    | string     | null: false |
-| condition | string     | null: false |
-| cost      | string     | null: false |
-| soures    | string     | null: false |
-| date      | integer    | null: false |
-| user      | references | null: false, foreign_key: true|
+| Column      | Type       | Options                       |
+| ------      | ------     | -----------                   |
+| item_name   | string     | null: false                   |
+| category    | string     | null: false                   |
+| price       | integer    | null: false                   |
+| condition   | string     | null: false                   |
+| cost        | string     | null: false                   |
+| soures      | string     | null: false                   |
+| date        | integer    | null: false                   |
+| user_id     | references | null: false, foreign_key: true|
 
 ### Association
 - belongs_to :user
@@ -51,7 +49,6 @@
 ## orders テーブル
 | Column     | Type          | Options                        |
 | ------     | ----------    | ------------------------------ |
-| user       | string        | null: false                    |
 | order      | string        | null: false                    |
 | item       | string        | null: false                    |
 | user_id    | references    | null: false   foreign_key: true|
