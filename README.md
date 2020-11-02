@@ -1,59 +1,24 @@
-# テーブル設計
-## users テーブル
-| Column              | Type      | Options     |
-| --------            | ------    | ----------- |
-| email               | string    | null: false |
-| encrypted_password  | string    | null: false |
-| name                | string    | null: false |
-| birthday            | date      | null: false |
-| last_name           | string    | null: false |
-| first_name          | string    | null: false |
-| last_name_furigana  | string    | null: false |
-| first_name_furigana | string    | null: false |
+# README
 
-### Association
-- has_many :items
-- has_one :order
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-## addresses テーブル
-| Column         | Type      | Options                        |
-| --------       | ------    | -----------                    |
-| postal_code    | string    | null: false                    |
-| prefectures_id | integer   | null: false                    |
-| municipalities | string    | null: false                    |
-| address        | string    | null: false                    |
-| building       | string    |                                |
-| phone_number   | string    | null: false                    |
-| order          | references| foreign_key: true | 
- 
-### Association
-- belongs_to :order
+Things you may want to cover:
 
+* Ruby version
 
-## items テーブル
-| Column      | Type       | Options                       |
-| ------      | ------     | -----------                   |
-| name        | string     | null: false                   |
-| category_id | integer    | null: false                   |
-| price       | integer    | null: false                   |
-| condition_id| integer    | null: false                   |
-| cost_id     | integer    | null: false                   |
-| soures_id   | integer    | null: false                   |
-| date_id     | integer    | null: false                   |
-| user        | references | foreign_key: true|
+* System dependencies
 
-### Association
-- belongs_to :user
-- has_one :order
+* Configuration
 
-## orders テーブル
-| Column     | Type          | Options                        |
-| ------     | ----------    | ------------------------------ |
-| item       | references    | foreign_key: true |
-| user       | references    | foreign_key: true |
- 
-### Association
- 
-- belongs_to :user
-- belongs_to :item
+* Database creation
 
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
