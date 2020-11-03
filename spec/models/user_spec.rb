@@ -6,6 +6,53 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+    context '新規登録がうまくいくとき' do
+    it '全ての記入欄が存在すれば登録できる' do
+      expect(@user).to be_valid
+    end
+     
+    it 'emailに@マークがあれば登録できる' do
+      @user.email = 'hoge@.com'
+      expect(@user).to be_valid
+    end
+
+    it 'passwordが6文字以上であれば登録できる' do
+      @user.password = '0000aaaa'
+      @user.password_confirmation = '0000aaaa'
+      expect(@user).to be_valid
+    end
+     
+    it'passwordが半角英数字(混合)であれば登録できる' do
+       @user.password = '000aaa'
+       @user.password_confirmation = '000aaa'
+       expect(@user).to be_valid
+    end
+
+    it 'last_nameが大文字であれば登録できる' do
+      @user.last_name = 'あア亜あア亜'
+      expect(@user).to be_valid
+    end
+
+    it 'first_nameが大文字であれば登録できる' do
+      @user.first_name = 'ああアア亜亜'
+      expect(@user).to be_valid
+    end
+
+    it 'last_name_kanaが大文字カタカナであれば登録できる' do
+      @user.last_name_kana = 'アアアアアア'
+      expect(@user).to be_valid
+    end
+
+    it 'first_name_kanaが大文字カタカナであれば登録できる' do
+       @user.first_name_kana = 'アアアアアア'
+       expect(@user).to be_valid
+    end
+
+    
+     
+  end
+  
+  context '新規登録がうまくいかないとき' do
     it 'nicknameが空だと登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -119,4 +166,5 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birth date can't be blank")
     end
   end
+ end
 end
