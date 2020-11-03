@@ -10,16 +10,6 @@ RSpec.describe User, type: :model do
     it '全ての記入欄が存在すれば登録できる' do
       expect(@user).to be_valid
     end
-
-    it 'last_name_kanaが大文字カタカナであれば登録できる' do
-      @user.last_name_kana = 'アアアアアア'
-      expect(@user).to be_valid
-    end
-
-    it 'first_name_kanaが大文字カタカナであれば登録できる' do
-       @user.first_name_kana = 'アアアアアア'
-       expect(@user).to be_valid
-    end 
   end
   
   context '新規登録がうまくいかないとき' do
