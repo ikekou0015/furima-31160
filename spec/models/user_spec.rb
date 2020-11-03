@@ -19,8 +19,9 @@ RSpec.describe User, type: :model do
     end
 
     it 'emailに@マークがないと登録できない' do
-       @user.email = '(/@.+/)'
-       @user.valid?  
+       @user.email = 'hogegmail.com'
+       @user.valid? 
+       expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
     it '重複したemailが存在する場合登録できないこと' do
@@ -33,7 +34,6 @@ RSpec.describe User, type: :model do
 
     it 'passwordが空だと登録できない' do
       @user.password = ''
-      @user.password_confirmation = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
