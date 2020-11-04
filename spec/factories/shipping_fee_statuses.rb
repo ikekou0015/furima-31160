@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :genre do
+  factory :shipping_fee_status do
     
   end
 end
