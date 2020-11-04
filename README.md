@@ -31,16 +31,17 @@
 
 
 ## items テーブル
-| Column      | Type       | Options            |
-| ------      | ------     | -----------        |
-| name        | string     | null: false        |
-| category_id | integer    | null: false        |
-| price       | integer    | null: false        |
-| condition_id| integer    | null: false        |
-| cost_id     | integer    | null: false        |
-| soures_id   | integer    | null: false        |
-| date_id     | integer    | null: false        |
-| user        | references | foreign_key: true|
+| Column                 | Type       | Options            |
+| ------                 | ------     | -----------        |
+| name                   | string     | null: false        |
+| category_id            | integer    | null: false        |
+| info                   | text       | null: false        |
+| sales_status           | integer    | null: false        |
+| shipping_fee_status    | integer    | null: false        |
+| prefecture             | integer    | null: false        |
+| scheduled_delivery     | integer    | null: false        |
+| price                  | integer    | null: false        |
+| user                   | references | foreign_key: true  |
 
 ### Association
 - belongs_to :user
