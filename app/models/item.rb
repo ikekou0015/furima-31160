@@ -9,9 +9,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
 
-  validates :name, :info, presence: true
-  validates :price, presence: true, format: { with: /\A[300-9999999]+\z/, messege: '半角数字で入力して下さい' }
-  
+  with_options presence: true do
+  validates :name
+  validates :info 
+  validates :price, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+end
+
   validates :category_id,            numericality:     { other_than: 1 }
   validates :sales_status_id,        numericality:     { other_than: 1 }
   validates :shipping_fee_status_id, numericality:     { other_than: 1 }
