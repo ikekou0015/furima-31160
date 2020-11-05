@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_one :items
+  has_many :items
 
   validates :nickname,   presence: true, length: { maximum: 40 }
   validates :birth_date, presence: true

@@ -9,8 +9,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :scheduled_delivery
 
-  
-  validates :name, :info, :price, presence: true
+  validates :name, :info, presence: true
+  validates :price, presence: true
   
   validates :category,            numericality:     { other_than: 1 }
   validates :sales_status,        numericality:     { other_than: 1 }
