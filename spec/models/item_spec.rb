@@ -47,19 +47,20 @@ describe '出品商品の保存' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")  
     end 
-    it 'category_idの選択が1だと保存されない' do
+
+    it 'category_idの選択されていないと保存されない' do
       @item.category_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
      end
 
-     it 'sales_status_idの選択が1だと保存されない' do
+     it 'sales_status_idの選択されていないと保存されない' do
       @item.sales_status_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Sales status must be other than 1")
      end
 
-     it 'shipping_fee_statusの選択が1だと保存されない' do
+     it 'shipping_fee_statusの選択されていないと保存されない' do
       @item.shipping_fee_status_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping fee status must be other than 1")
@@ -71,13 +72,13 @@ describe '出品商品の保存' do
       expect(@item.errors.full_messages).to include("Prefecture is not a number")
      end
 
-     it 'scheduled_deliveryの選択が1だと保存されない' do
+     it 'scheduled_deliveryの選択されていないと保存されない' do
       @item.scheduled_delivery_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
      end
 
-     it 'ユーザーとが紐づいていないと出品商品は保存されない' do
+     it 'ユーザーが紐づいていないと出品商品は保存されない' do
       @item.user = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
