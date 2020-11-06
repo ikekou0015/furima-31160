@@ -10,7 +10,7 @@ describe '出品商品の保存' do
     it '全ての項目が存在すれば出品商品が保存される' do
       expect(@item).to be_valid
     end
-
+  end
   context '出品商品が保存できない場合' do
      it 'nameが空だと保存できない' do
       @item.name = ''
@@ -60,7 +60,7 @@ describe '出品商品の保存' do
        expect(@item.errors.full_messages).to include("Category is not a number")  
      end
 
-     end
+     
      it 'sales_status_idの選択されていないと保存されない' do
       @item.sales_status_id = '1'
       @item.valid?
@@ -82,7 +82,7 @@ describe '出品商品の保存' do
      it 'shipping_fee_statusが空だと保存されない' do
       @item.shipping_fee_status_id = ''
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping fee status is not a mumber")
+      expect(@item.errors.full_messages).to include("Shipping fee status can't be blank", "Shipping fee status is not a number")
      end
 
      it 'prefecture_idが選択されてないと保存されない' do
@@ -108,12 +108,13 @@ describe '出品商品の保存' do
        @item.valid?
        expect(@item.errors.full_messages).to include("Scheduled delivery is not a number")
      end
+
      it 'ユーザーが紐づいていないと出品商品は保存されない' do
       @item.user = nil
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
      end
+
    end
   end
  end
-end
