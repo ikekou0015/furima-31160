@@ -11,6 +11,7 @@ describe '出品商品の保存' do
       expect(@item).to be_valid
     end
   end
+
   context '出品商品が保存できない場合' do
      it 'nameが空だと保存できない' do
       @item.name = ''
@@ -23,6 +24,12 @@ describe '出品商品の保存' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Info can't be blank")
      end
+     
+     it 'imageが空だと保存できない' do
+       @item.image = nil
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Image can't be blank") 
+    end
 
      it 'priceが空だと保存できない' do
       @item.price = ''
@@ -114,7 +121,7 @@ describe '出品商品の保存' do
       @item.valid?
       expect(@item.errors.full_messages).to include("User must exist")
      end
-
-   end
+    end
+    
   end
  end
