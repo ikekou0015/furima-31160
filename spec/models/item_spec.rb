@@ -53,31 +53,61 @@ describe '出品商品の保存' do
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
      end
+      
+     it 'category_idが空だと保存されない' do
+       @item.category_id = ''
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Category is not a number")  
+     end
 
+     end
      it 'sales_status_idの選択されていないと保存されない' do
       @item.sales_status_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Sales status must be other than 1")
      end
-
+     
+     it 'sales_status_idが空だと保存されない' do
+       @item.sales_status_id = ''
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Sales status is not a number")
+     end
+     
      it 'shipping_fee_statusの選択されていないと保存されない' do
       @item.shipping_fee_status_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping fee status must be other than 1")
      end
+     
+     it 'shipping_fee_statusが空だと保存されない' do
+      @item.shipping_fee_status_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Shipping fee status is not a mumber")
+     end
 
      it 'prefecture_idが選択されてないと保存されない' do
-      @item.prefecture_id = ''
+      @item.prefecture_id = '1'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Prefecture is not a number")
+      expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
      end
+     
+     it 'prefecture_idが空だと保存されない' do
+       @item.prefecture_id = ''  
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Prefecture is not a number")
+      end
 
      it 'scheduled_deliveryの選択されていないと保存されない' do
       @item.scheduled_delivery_id = '1'
       @item.valid?
       expect(@item.errors.full_messages).to include("Scheduled delivery must be other than 1")
      end
-
+     
+     it 'scheduled_deliveryが空だと保存されない' do
+       @item.scheduled_delivery_id = ''
+       @item.valid?
+       expect(@item.errors.full_messages).to include("Scheduled delivery is not a number")
+     end
      it 'ユーザーが紐づいていないと出品商品は保存されない' do
       @item.user = nil
       @item.valid?
