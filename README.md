@@ -16,15 +16,15 @@
 - has_one :order
 
 ## addresses テーブル
-| Column         | Type      | Options           |
-| --------       | ------    | -----------       |
-| postal_code    | string    | null: false       |
-| prefectures_id | integer   | null: false       |
-| municipalities | string    | null: false       |
-| address        | string    | null: false       |
-| building       | string    |                   |
-| phone_number   | string    | null: false       |
-| order          | references| foreign_key: true | 
+| Column                 | Type      | Options      |
+| --------               | ------    | -----------  |
+| postal_code(郵便番号)   | string    | null: false  |
+| prefectures_id(都道府県)| integer   | null: false  |
+| city(市、区)            | string    | null: false  |
+| addresses(番地)         | string    | null: false  |
+| building(建物名､部屋番号)| string    |              |
+| phone_number(電話番号)  | string    | null:false   |
+| order(購入者)         | references| foreign_key: true | 
  
 ### Association
 - belongs_to :order
@@ -57,4 +57,5 @@
  
 - belongs_to :user
 - belongs_to :item
+- has_one :addresses
 
