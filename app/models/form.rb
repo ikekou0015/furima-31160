@@ -1,6 +1,6 @@
 class Form 
   include ActiveModel::Model
- attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id, :user_id
+ attr_accessor :postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :item_id, :user_id, :token
  
  with_options presence: true do
   validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -8,6 +8,7 @@ class Form
   validates :city
   validates :addresses
   validates :phone_number, length: { maximum: 11 }
+  validates :token
  end
 
   def save

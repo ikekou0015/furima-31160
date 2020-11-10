@@ -7,7 +7,7 @@ end
 
 describe '購入商品の保存' do
   context '購入商品が保存できる場合' do
-    it '全ての項目が存在すれば購入商品が保存される' do
+    it '全ての項目とトークンが存在すれば購入商品が保存される' do
       expect(@form).to be_valid
     end
   
@@ -19,6 +19,12 @@ describe '購入商品の保存' do
    
   context '購入商品が保存されない場合' do
      
+    it "tokenが空では登録できないこと" do
+      @form.token = nil
+      @form.valid?
+      expect(@form.errors.full_messages).to include("Token can't be blank")
+    end
+
     it 'postal_codeが空では保存できない' do
       @form.postal_code = ''
       @form.valid?

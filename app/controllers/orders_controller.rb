@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
-  before_action :move_to_index, only: [:index]
+  #before_action :authenticate_user!, only: [:index]
+  #before_action :move_to_index, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -8,11 +8,12 @@ class OrdersController < ApplicationController
   end
   
   def create
-  
+   
   @item = Item.find(params[:item_id])
   @form = Form.new(form_params)
     
 if @form.valid? 
+    pay_item
     @form.save
     redirect_to root_path
    else
@@ -23,12 +24,20 @@ end
   private
 
    def form_params
-    params.require(:form).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number ).merge(item_id: params[:item_id], user_id: current_user.id)
+    params.require(:form).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number ).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
    end
-
-   def move_to_index
-    if current_user.id == Item.find(params[:item_id]).user_id
-      redirect_to root_path
-    end
+ 
+   def pay_item
+    Payjp.api_key = "sk_test_5299d5491d4bbf2bb31cced1"
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: form_params[:token],
+      currency: 'jpy'
+    )
   end
+   #def move_to_index
+    #if current_user.id == Item.find(params[:item_id]).user_id
+     # redirect_to root_path
+    #end
+  #end
 end
