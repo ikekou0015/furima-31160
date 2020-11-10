@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :move_to_index, only: [:index]
-  before_action :set_tweet, only: [:index, :create]
+  before_action :set_item, only: [:index, :create]
   def index
     @form = Form.new
   end
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  def set_tweet
+  def set_item
     @item = Item.find(params[:item_id])
   end
 end
