@@ -19,7 +19,7 @@ describe '購入商品の保存' do
    
   context '購入商品が保存されない場合' do
      
-    it "tokenが空では登録できないこと" do
+    it "tokenが空では登録できない" do
       @form.token = nil
       @form.valid?
       expect(@form.errors.full_messages).to include("Token can't be blank")
@@ -66,6 +66,13 @@ describe '購入商品の保存' do
       @form.valid?
       expect(@form.errors.full_messages).to include("Phone number can't be blank")
     end
+
+    it 'phone_numberが11桁以上だと保存できない' do
+       @form.phone_number = '000000000000'
+       @form.valid?
+       expect(@form.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+    end
+
 
      end
   end
