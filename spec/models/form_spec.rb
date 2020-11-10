@@ -71,6 +71,12 @@ RSpec.describe Form, type: :model do
         @form.valid?
         expect(@form.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
+      
+      it 'phone_numberにハイフンがあると保存できない' do
+        @form.phone_number = '000-00000'
+        @form.valid?
+        expect(@form.errors.full_messages).to include("Phone number is invalid")
+      end
     end
   end
 end
